@@ -55,7 +55,7 @@ public class BookController {
     // pass id as path variable
     // getBookById()
     @GetMapping("/get-book-by-id/{id}")
-    public ResponseEntity<Book> getBookById(@PathVariable ("id") int id){
+    public ResponseEntity<Book> getBookById(@PathVariable("id") int id){
         for(Book output:bookList){
             if(output.getId()==id){
                 break;
@@ -69,7 +69,7 @@ public class BookController {
     // pass id as path variable
     // deleteBookById()
     @DeleteMapping("/delete-book-by-id/{id}")
-    public ResponseEntity deleteBookById(@PathVariable ("id") int id){
+    public ResponseEntity deleteBookById(@PathVariable("id") int id){
         for(Book delBook:bookList){
             if(delBook.getId()==id) {
                 bookList.remove(delBook);
@@ -99,7 +99,7 @@ public class BookController {
     // pass author name as request param
     // getBooksByAuthor()
     @GetMapping("/get-books-by-author")
-    public ResponseEntity<List<Book>> getBooksByAuthor(@RequestParam ("author") String author){
+    public ResponseEntity<List<Book>> getBooksByAuthor(@RequestParam("author") String author){
         List<Book> ans=new ArrayList<>();
         for(Book output:bookList){
             if(output.getAuthor().equals(author)){
@@ -113,7 +113,7 @@ public class BookController {
     // pass genre name as request param
     // getBooksByGenre()
     @GetMapping("/get-books-by-genre")
-    public ResponseEntity<List<Book>> getBooksByGenre(@RequestParam ("genre") String genre){
+    public ResponseEntity<List<Book>> getBooksByGenre(@RequestParam("genre") String genre){
         List<Book> ans=new ArrayList<>();
         for(Book output:bookList){
             if(output.getAuthor().equals(genre)){
