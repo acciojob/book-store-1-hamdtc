@@ -118,7 +118,7 @@ public class BookController {
     public ResponseEntity<List<Book>> getBooksByGenre(@RequestParam("genre") String genre){
         List<Book> ans=new ArrayList<>();
         for(Book output:bookList){
-            if(output.getAuthor().equals(genre)){
+            if(output.getGenre().equals(genre)){
                 ans.add(output);
             }
         }
