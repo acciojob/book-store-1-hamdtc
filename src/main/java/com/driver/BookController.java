@@ -55,7 +55,7 @@ public class BookController {
     // pass id as path variable
     // getBookById()
     @GetMapping("/get-book-by-id/{id}")
-    public Book bookById(@PathVariable ("id") int id){
+    public Book getBookById(@PathVariable ("id") int id){
         for(Book output:bookList){
             if(output.getId()==id){
                 return output;
