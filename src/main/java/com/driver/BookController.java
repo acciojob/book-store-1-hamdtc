@@ -46,29 +46,77 @@ public class BookController {
     // pass book as request body
     @PostMapping("/create-book")
     public ResponseEntity<Book> createBook(@RequestBody Book book){
-        // Your code goes here.
+
+        bookList.add(book);
         return new ResponseEntity<>(book, HttpStatus.CREATED);
     }
 
     // get request /get-book-by-id/{id}
     // pass id as path variable
     // getBookById()
+    @GetMapping("/get-book-by-id/{id}")
+    public Book bookById(@PathVariable ("id") int id){
+        for(Book output:bookList){
+            if(output.getId()==id){
+                return output;
+            }
+        }
+        return null;
+    }
 
     // delete request /delete-book-by-id/{id}
     // pass id as path variable
     // deleteBookById()
+    @DeleteMapping("/delete-book-by-id/{id}")
+    public void deleteBookById(@PathVariable ("id") int id){
+        for(Book delBook:bookList){
+            if(delBook.getId()==id) {
+                bookList.remove(delBook);
+                return;
+            }
+        }
+    }
+
 
     // get request /get-all-books
     // getAllBooks()
+    @GetMapping("/get-all-books")
+    public List<Book> getAllBooks(){
+        return bookList;
+
+    }
 
     // delete request /delete-all-books
     // deleteAllBooks()
+    @DeleteMapping("/delete-all-books")
+    public void deleteAllBooks(){
+        bookList=new ArrayList<Book>();
+
+    }
 
     // get request /get-books-by-author
     // pass author name as request param
     // getBooksByAuthor()
+    @GetMapping("/get-books-by-author")
+    public String getBooksByAuthor(@RequestParam ("author") String author){
+        for(Book output:bookList){
+            if(output.getAuthor()==author){
+                return output.getAuthor()+" "+output.getName();
+            }
+        }
+        return null;
+    }
 
     // get request /get-books-by-genre
     // pass genre name as request param
     // getBooksByGenre()
+    @GetMapping("/get-books-by-genre")
+    public String getBooksByGenre(@RequestParam ("genre") String genre){
+        for(Book output:bookList){
+            if(output.getGenre()==genre){
+                return output.getGenre()+" "+output.getName();
+            }
+        }
+        return null;
+    }
 }
