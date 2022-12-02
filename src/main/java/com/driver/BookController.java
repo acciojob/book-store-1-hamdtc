@@ -57,13 +57,14 @@ public class BookController {
     @GetMapping("/get-book-by-id/{id}")
     public ResponseEntity<Book> getBookById(@PathVariable String id){
         int i=Integer.parseInt(id);
-        for(Book output:bookList){
-            if(output.getId()==i){
+        Book out = null;
+        for(Book output:bookList) {
+            if (output.getId() == i) {
+                out = output;
                 break;
             }
-        return new ResponseEntity<>(output,HttpStatus.ACCEPTED);
         }
-        return null;
+        return new ResponseEntity<>(out,HttpStatus.ACCEPTED);
     }
 
     // delete request /delete-book-by-id/{id}
